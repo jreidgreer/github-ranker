@@ -8,9 +8,9 @@ class Table extends Component {
     super();
 
     this.state = {
-      sortBy: null,
-      sortType: null,
-      direction: null,
+      sortBy: 'name',
+      sortType: 'string',
+      direction: 'ascending',
     }
   }
 

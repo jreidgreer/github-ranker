@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.scss';
 import Layout from '../Layout/Layout';
 import SelectOrganization from '../SelectOrganization/SelectOrganization';
 import ViewRepository from '../ViewRepository/ViewRepository';
