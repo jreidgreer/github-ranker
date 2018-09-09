@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 import './ViewRepository.scss';
 
 import { getCommits } from '../../utils/repository.util';
+
+// Commit history can lack proper author metadata
+const AuthorMeta = ({ author }) => {
+  if (author) {
+    return <a href={author.html_url} target="_blank">{author.login}</a>;
+  }
+
+  return null;
+}
 
 class ViewRepository extends Component {
   constructor() {
@@ -26,6 +36,11 @@ class ViewRepository extends Component {
 
     return (
       <div className="ViewRepository">
+        <Helmet>
+          <title>
+            {this.props.match.params.org} / {this.props.match.params.repo} - GitHub Repo Ranker
+          </title>
+        </Helmet>
         <h1 className="ViewRepository-title">
           <Link to={`/${org}`}>{org}</Link> / {this.props.match.params.repo}
         </h1>
@@ -39,7 +54,7 @@ class ViewRepository extends Component {
               <a href={commit.html_url} target="_blank">{commit.commit.message}</a>
               </p>
               <div className="ViewRepository-commit-meta">
-              <a href={commit.author.html_url} target="_blank">{commit.author.login}</a>
+                <AuthorMeta author={commit.author} />
               </div>
             </li>
           ))}

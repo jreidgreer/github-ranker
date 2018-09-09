@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Table.scss';
 import { sortRepos } from '../../utils/table.util';
 
@@ -38,14 +39,15 @@ class Table extends Component {
   }
 
   render() {
+    let data = this.props.data;
+    const { sortBy, direction, sortType } = this.state;
+
     if (!this.props.data || this.props.data.length <= 0) {
       return null;
     }
 
-    let data = this.props.data;
-
-    if (this.state.sortBy) {
-      data = sortRepos(data, this.state.sortBy, this.state.direction, this.state.sortType);
+    if (sortBy) {
+      data = sortRepos(data, sortBy, direction, sortType);
     }
 
     return (
@@ -66,7 +68,18 @@ class Table extends Component {
 
           {this.props.data.map(data => (
             <tr>
-              {this.props.headers.map(header => <td>{data[header.key]}</td>)}
+              {this.props.headers.map(header => {
+
+                // TODO: this makes this less data-agnostic. Decide whether to make
+                // table less generic or redo this section to make configurable.
+                if (header.key === 'name') {
+                  return (
+                    <td><Link to={`/${this.props.org}/${data[header.key]}`}>{data[header.key]}</Link></td>
+                  );
+                }
+                
+                return <td>{data[header.key]}</td>;
+              })}
             </tr>
           ))}
         </tbody>

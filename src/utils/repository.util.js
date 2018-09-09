@@ -15,36 +15,23 @@ export async function getRepos(org) {
       'Accept': GITHUB_REQUEST_HEADER
     }
   };
+  let rawData;
   let result = [];
 
   try {
-    result = await rp(options);
+    rawData = await rp(options);
   } catch (e) {
     console.error(e);
     return result;
   }
 
   try {
-    result = JSON.parse(result);
+    result = JSON.parse(rawData);
   } catch (e) {
     console.error('Error parsing result from getRepos ', e);
   }
 
-  // We only need a subset of this data, and it needs to be enhanced
-  return result.map(repo => {
-    const {
-      name,
-      forks,
-      open_issues,
-      watchers
-    } = repo;
-
-    return {
-      name,
-      forks,
-      open_issues
-    }
-  })
+  return result;
 }
 
 /**

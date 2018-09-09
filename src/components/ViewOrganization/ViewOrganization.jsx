@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import './ViewRepository.scss';
 
 import { getRepos } from '../../utils/repository.util';
@@ -22,11 +23,16 @@ class ViewRepository extends Component {
   }
 
   render() {
+    const { org } = this.props.match.params;
+
     return (
       <div className="ViewOrganization">
-        <h1>{this.props.match.params.org}</h1>
+        <Helmet>
+          <title>{org} - GitHub Repo Ranker</title>
+        </Helmet>
+        <h1>{org}</h1>
         
-        <Table data={this.state.repos} headers={REPO_HEADERS}/>
+        <Table data={this.state.repos} headers={REPO_HEADERS} org={org} />
       </div>
     );
   }
