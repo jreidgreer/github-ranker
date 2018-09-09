@@ -13,6 +13,15 @@
 
   .App-textbox {
     margin: 60px auto;
+
+    input {
+      width: 80%;
+      border: none;
+      border-bottom: 3px solid #222;
+      padding: 20px 0;
+      font-size: 3em;
+      font-family: 'Lato';
+    }
   }
 }
 

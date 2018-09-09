@@ -23,6 +23,20 @@ class Table extends Component {
     return this.setState({ sortBy: key, direction: 'ascending', sortType: type });
   }
 
+  getHeaderClasses = (key) => {
+    let classes = '';
+
+    if (this.state.sortBy === key) {
+      classes = 'Table-header--active ';
+      classes +=
+        this.state.direction === 'ascending'
+        ? 'Table-header--ascending'
+        : 'Table-header--descending';
+    }
+
+    return classes;
+  }
+
   render() {
     if (!this.props.data || this.props.data.length <= 0) {
       return null;
@@ -39,7 +53,14 @@ class Table extends Component {
         <tbody>
           <tr>
             {this.props.headers.map(header => (
-            <th onClick={() => this.sort(header.key, header.type)}>{header.display}</th>
+            <th>
+              <button
+                onClick={() => this.sort(header.key, header.type)}
+                className={this.getHeaderClasses(header.key)}
+              >
+                {header.display}
+              </button>
+            </th>
             ))}
           </tr>
 

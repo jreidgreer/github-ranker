@@ -53,7 +53,12 @@ class App extends Component {
           <h1 className="App-title">Enter your GitHub organization</h1>
         </header>
         <div className="App-textbox">
-          <input type="text" onKeyDown={this.selectOrg} ref={node => this.input = node} />
+          <input
+            type="text"
+            onKeyDown={this.selectOrg}
+            ref={node => this.input = node}
+            placeholder="Enter your GitHub organization"
+          />
         </div>
 
         <Table data={this.state.repos} headers={REPO_HEADERS}/>

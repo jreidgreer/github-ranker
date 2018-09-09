@@ -3,7 +3,33 @@
   tbody {
     tr {
       th {
-        cursor: pointer;
+        button {
+          all: unset;
+          cursor: pointer;
+          height: 50px;
+          width: 100%;
+          line-height: 50px;
+          font-family: 'Lato', sans-serif;
+          font-weight: 400;
+
+          &::after {
+            font-size: 10px;
+            width: 30px;
+            padding: 0 15px;
+          }
+          
+          &.Table-header--active {
+            background: gray;
+          }
+  
+          &.Table-header--ascending::after {
+            content: '▲';
+          }
+  
+          &.Table-header--descending::after {
+            content: '▼';
+          }
+        }
       }
     }
   }
