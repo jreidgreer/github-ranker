@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.scss';
 import SelectOrganization from '../SelectOrganization/SelectOrganization';
 import ViewRepository from '../ViewRepository/ViewRepository';
+import ViewOrganization from '../ViewOrganization/ViewOrganization';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <div className="App-content">
           <Route exact path="/" component={SelectOrganization} />
           <Route path="/:org/:repo" component={ViewRepository} />
+          <Route path="/:org" component={ViewOrganization} />
         </div>
       </div>
       </Router>
