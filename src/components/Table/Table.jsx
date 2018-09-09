@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './Table.scss';
+import { sortRepos } from '../../utils/table.util';
 
 class Table extends Component {
   constructor() {
@@ -12,13 +14,13 @@ class Table extends Component {
   }
 
   sort = (key, type) => {
-    if (this.state.sortBy === key && this.state.direction === 'accending') {
-      return this.setState({ direction: 'decending' });
-    } else if (this.state.sortBy === key && this.state.direction === 'decending') {
-      return this.setState({ direction: 'accending' });
+    if (this.state.sortBy === key && this.state.direction === 'ascending') {
+      return this.setState({ direction: 'descending' });
+    } else if (this.state.sortBy === key && this.state.direction === 'descending') {
+      return this.setState({ direction: 'ascending' });
     }
 
-    return this.setState({ sortBy: key, direction: 'accending', sortType: type });
+    return this.setState({ sortBy: key, direction: 'ascending', sortType: type });
   }
 
   render() {
@@ -33,7 +35,7 @@ class Table extends Component {
     }
 
     return (
-      <table>
+      <table className="Table">
         <tbody>
           <tr>
             {this.props.headers.map(header => (
@@ -53,54 +55,3 @@ class Table extends Component {
 }
 
 export default Table;
-
-function sortRepos(repos, key, direction, type) {
-  console.log(key, direction, type);
-  if (type === 'string') {
-    return sortName(repos, key, direction);
-  }
-
-  if (direction === 'accending') {
-    return repos.sort((a, b) => {
-      return a[key] - b[key];
-    });
-  } else {
-    return repos.sort((a, b) => {
-      return b[key] - a[key];
-    });
-  }
-
-}
-
-function sortName (repos, key, direction) {
-  if (direction === 'accending') {
-    
-    return repos.sort((a, b) => {
-      const nameA = a[key].toUpperCase();
-      const nameB = b[key].toUpperCase();
-
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-
-      return 0;
-    });
-  }
-
-  return repos.sort((a, b) => {
-    const nameA = a[key].toUpperCase();
-    const nameB = b[key].toUpperCase();
-
-    if (nameB < nameA) {
-      return -1;
-    }
-    if (nameB > nameA) {
-      return 1;
-    }
-
-    return 0;
-  });
-}
