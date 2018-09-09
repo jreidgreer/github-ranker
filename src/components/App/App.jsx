@@ -17,7 +17,7 @@ class App extends Component {
         <div className="App-content">
           <Route exact path="/" component={SelectOrganization} />
           <Route path="/:org/:repo" component={ViewRepository} />
-          <Route path="/:org" component={ViewOrganization} />
+          <Route exact path="/:org" component={ViewOrganization} />
         </div>
       </div>
       </Router>

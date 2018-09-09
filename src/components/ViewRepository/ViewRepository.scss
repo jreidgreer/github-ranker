@@ -1,4 +1,13 @@
 .ViewRepository {
+  width: 90%;
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: left;
+
+  .ViewRepository-title {
+    text-align: left;
+  }
+
   .ViewRepository-commits {
     margin: 0;
     padding: 0;
