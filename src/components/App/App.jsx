@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
-import RepositoryList from '../RepositoryList/RepositoryList';
+// import RepositoryList from '../RepositoryList/RepositoryList';
+import Table from '../Table/Table';
 import { getRepos, getCommits } from '../../utils/repository.util';
 
 class App extends Component {
@@ -28,6 +29,24 @@ class App extends Component {
   }
 
   render() {
+    const REPO_HEADERS = [
+      {
+        key: 'name',
+        display: 'Name',
+        type: 'string',
+      },
+      {
+        key: 'forks',
+        display: 'Forks',
+        type: 'number',
+      },
+      {
+        key: 'open_issues',
+        display: 'Open Issues',
+        type: 'number',
+      },
+    ];
+
     return (
       <div className="App">
         <header className="App-header">
@@ -37,27 +56,7 @@ class App extends Component {
           <input type="text" onKeyDown={this.selectOrg} ref={node => this.input = node} />
         </div>
 
-        <fieldset>
-          <legend>Sort by</legend>
-
-          <div>
-              <input type="radio" id="sort-commits" name="sort-repos" onClick={this.sortRepos} />
-              <label for="sort-commits">Commits</label>
-          </div>
-
-          {/* <div>
-              <input type="radio" id="dewey" name="drone" />
-              <label for="dewey">Dewey</label>
-          </div>
-
-          <div>
-              <input type="radio" id="louie" name="drone" />
-              <label for="louie">Louie</label>
-          </div> */}
-
-      </fieldset>
-
-        <RepositoryList repos={this.state.repos} />
+        <Table data={this.state.repos} headers={REPO_HEADERS}/>
       </div>
     );
   }
