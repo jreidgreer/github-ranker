@@ -1,5 +1,8 @@
 .Table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+
   tbody {
     tr {
       th {
@@ -9,17 +12,20 @@
           height: 50px;
           width: 100%;
           line-height: 50px;
-          font-family: 'Lato', sans-serif;
           font-weight: 400;
+          font-size: 32px;
+          @media (max-width: 525px) {
+            font-size: 20px;
+          }
 
           &::after {
             font-size: 10px;
-            width: 30px;
             padding: 0 15px;
+            position: absolute;
           }
           
           &.Table-header--active {
-            background: gray;
+            background:#FAFAFA;
           }
   
           &.Table-header--ascending::after {
@@ -29,6 +35,16 @@
           &.Table-header--descending::after {
             content: '▼';
           }
+        }
+      }
+
+      td {
+        height: 50px;
+        line-height: 50px;
+        font-size: 24px;
+
+        @media (max-width: 525px) {
+          font-size: 16px;
         }
       }
     }

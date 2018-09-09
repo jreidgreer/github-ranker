@@ -1,0 +1,26 @@
+.SelectOrganization {
+  .SelectOrganization-textbox {
+    margin: 60px auto;
+
+    input {
+      width: 90%;
+      border: none;
+      border-bottom: 3px solid #222;
+      padding: 20px 0;
+      font-size: 3em;
+      font-family: 'Lato';
+      transition: all ease .2s;
+
+      &:focus {
+        outline: none;
+        border-bottom: 3px solid #e50914;
+
+      }
+
+      &.SelectOrganization-input--used {
+        font-size: 1em;
+      }
+    }
+  }
+}
+

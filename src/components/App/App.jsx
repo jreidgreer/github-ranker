@@ -1,68 +1,22 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.scss';
-// import RepositoryList from '../RepositoryList/RepositoryList';
-import Table from '../Table/Table';
-import { getRepos, getCommits } from '../../utils/repository.util';
+import SelectOrganization from '../SelectOrganization/SelectOrganization';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedOrg: '',
-      repos: []
-    };
-  }
-
-  selectOrg = async (event) => {
-    if (event.key === 'Enter') {
-      const selectedOrg = this.input.value;
-      const repos = await getRepos(selectedOrg);
-      this.setState({
-        selectedOrg,
-        repos
-      });
-    }
-  }
-
-  sortRepos = (event) => {
-    console.log('sort');
-  }
-
   render() {
-    const REPO_HEADERS = [
-      {
-        key: 'name',
-        display: 'Name',
-        type: 'string',
-      },
-      {
-        key: 'forks',
-        display: 'Forks',
-        type: 'number',
-      },
-      {
-        key: 'open_issues',
-        display: 'Open Issues',
-        type: 'number',
-      },
-    ];
-
     return (
+      <Router>
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Enter your GitHub organization</h1>
+          <h1 className="App-title">GitHub Repo Ranker</h1>
         </header>
-        <div className="App-textbox">
-          <input
-            type="text"
-            onKeyDown={this.selectOrg}
-            ref={node => this.input = node}
-            placeholder="Enter your GitHub organization"
-          />
+        
+        <div className="App-content">
+          <Route exact path="/" component={SelectOrganization} />
         </div>
-
-        <Table data={this.state.repos} headers={REPO_HEADERS}/>
       </div>
+      </Router>
     );
   }
 }
