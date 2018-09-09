@@ -8,7 +8,15 @@ import { getCommits } from '../../utils/repository.util';
 // Commit history can lack proper author metadata
 const AuthorMeta = ({ author }) => {
   if (author) {
-    return <a href={author.html_url} target="_blank">{author.login}</a>;
+    return (
+      <a
+        href={author.html_url}
+        target="_blank"
+        className="AuthorMeta"
+      >
+        {author.login}
+      </a>
+      );
   }
 
   return null;
@@ -42,7 +50,7 @@ class ViewRepository extends Component {
           </title>
         </Helmet>
         <h1 className="ViewRepository-title">
-          <Link to={`/${org}`}>{org}</Link> / {this.props.match.params.repo}
+          <Link to={`/${org}`}>{org}</Link> / <span className="ViewRepository-title--current">{this.props.match.params.repo}</span>
         </h1>
 
         <h2>Commits</h2>
