@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import './ViewRepository.scss';
+import './ViewOrganization.scss';
 
 import { getRepos } from '../../utils/repository.util';
 import { REPO_HEADERS } from '../../constants';
@@ -12,6 +12,7 @@ class ViewRepository extends Component {
     
     this.state = {
       repos: [],
+      loaded: false,
     };
   }
 
@@ -19,11 +20,26 @@ class ViewRepository extends Component {
     const { org } = this.props.match.params;
 
     getRepos(org)
-      .then(repos => this.setState({ repos }));
+      .then(repos => this.setState({ repos, loaded: true }));
   }
 
   render() {
     const { org } = this.props.match.params;
+
+    if (!this.state.loaded) {
+      return <div className="ViewOrganization"></div>;
+    }
+
+    if (this.state.repos.length <= 0 && this.state.loaded) {
+      return(
+        <div className="ViewOrganization">
+          <Helmet>
+            <title>Not repos found - GitHub Repo Ranker</title>
+          </Helmet>
+          <h1>No repos found for '{org}'</h1>
+        </div>
+      )
+    }
 
     return (
       <div className="ViewOrganization">

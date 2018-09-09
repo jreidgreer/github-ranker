@@ -31,7 +31,7 @@
       margin: 0;
       padding: 10px;
       list-style: none;
-      border: 1px solid #222;
+      border: 1px solid #eaecef;
       border-top: none;
 
       &:hover {
@@ -39,7 +39,7 @@
       }
 
       &:first-child {
-        border-top: 1px solid #222;
+        border-top: 1px solid #eaecef;
       }
 
       p {
@@ -56,6 +56,15 @@
 }
 
 .AuthorMeta {
-  color: #222;
-  text-decoration: none;
+  height: 20px;
+  line-height: 20px;
+  img {
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+  a {
+    color: #222;
+    text-decoration: none;
+  }
 }

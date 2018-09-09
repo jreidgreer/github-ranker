@@ -6,16 +6,14 @@ import './ViewRepository.scss';
 import { getCommits } from '../../utils/repository.util';
 
 // Commit history can lack proper author metadata
-const AuthorMeta = ({ author }) => {
+const AuthorMeta = ({ author, commit }) => {
   if (author) {
     return (
-      <a
-        href={author.html_url}
-        target="_blank"
-        className="AuthorMeta"
-      >
-        {author.login}
-      </a>
+      <div className="AuthorMeta">
+        <img src={author.avatar_url} />
+        <a href={author.html_url} target="_blank">{author.login}</a>
+        &nbsp;on {commit.author.date}
+      </div>
       );
   }
 
@@ -62,7 +60,7 @@ class ViewRepository extends Component {
               <a href={commit.html_url} target="_blank">{commit.commit.message}</a>
               </p>
               <div className="ViewRepository-commit-meta">
-                <AuthorMeta author={commit.author} />
+                <AuthorMeta author={commit.author} commit={commit.commit} />
               </div>
             </li>
           ))}

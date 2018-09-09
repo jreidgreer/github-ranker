@@ -54,6 +54,7 @@ class Table extends Component {
       <table className="Table">
         <tbody>
           <tr>
+            <th></th>
             {this.props.headers.map(header => (
             <th>
               <button
@@ -66,8 +67,9 @@ class Table extends Component {
             ))}
           </tr>
 
-          {this.props.data.map(data => (
+          {this.props.data.map((data, i) => (
             <tr>
+              <td>{i + 1}</td>
               {this.props.headers.map(header => {
 
                 // TODO: this makes this less data-agnostic. Decide whether to make
