@@ -30,8 +30,6 @@ export async function getRepos(org) {
     console.error('Error parsing result from getRepos ', e);
   }
 
-  console.log(result);
-  
   // We only need a subset of this data, and it needs to be enhanced
   return result.map(repo => {
     const {
@@ -63,5 +61,20 @@ export async function getCommits(org, repo) {
     }
   };
 
-  return rp(options);
+  let result = [];
+
+  try {
+    result = await rp(options);
+  } catch (e) {
+    console.error(e);
+    return result;
+  }
+
+  try {
+    result = JSON.parse(result);
+  } catch (e) {
+    console.error('Error parsing result from getRepos ', e);
+  }
+
+  return result;
 }
