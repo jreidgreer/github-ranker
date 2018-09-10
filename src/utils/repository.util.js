@@ -19,7 +19,7 @@ export async function getRepos(org) {
   let result = [];
 
   try {
-    rawData = await rp(options);
+    rawData = await rp.get(options);
   } catch (e) {
     console.error(e);
     return result;
@@ -51,7 +51,7 @@ export async function getRepoMeta(org, repo) {
   let result = {};
 
   try {
-    result = await rp(options);
+    result = await rp.get(options);
   } catch (e) {
     console.error(e);
     return result;
@@ -83,7 +83,7 @@ export async function getCommits(org, repo) {
   let result = [];
 
   try {
-    result = await rp(options);
+    result = await rp.get(options);
   } catch (e) {
     console.error(e);
     return result;
