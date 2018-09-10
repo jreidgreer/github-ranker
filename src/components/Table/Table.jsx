@@ -56,7 +56,7 @@ class Table extends Component {
           <tr>
             <th className="Table--no-background"></th>
             {this.props.headers.map(header => (
-            <th>
+            <th key={header.key}>
               <button
                 onClick={() => this.sort(header.key, header.type)}
                 className={this.getHeaderClasses(header.key)}
@@ -68,7 +68,7 @@ class Table extends Component {
           </tr>
 
           {this.props.data.map((data, i) => (
-            <tr>
+            <tr key={data.name + i}>
               <td>{i + 1}</td>
               {this.props.headers.map(header => {
 
@@ -76,11 +76,13 @@ class Table extends Component {
                 // table less generic or redo this section to make configurable.
                 if (header.key === 'name') {
                   return (
-                    <td><Link to={`/${this.props.org}/${data[header.key]}`}>{data[header.key]}</Link></td>
+                    <td key={`${header.key}-${data[header.key]}`}>
+                      <Link to={`/${this.props.org}/${data[header.key]}`}>{data[header.key]}</Link>
+                    </td>
                   );
                 }
                 
-                return <td>{data[header.key]}</td>;
+                return <td key={`${header.key}-${data[header.key]}`}>{data[header.key]}</td>;
               })}
             </tr>
           ))}

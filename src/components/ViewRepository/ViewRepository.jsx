@@ -11,7 +11,7 @@ const AuthorMeta = ({ author, commit }) => {
   if (author) {
     return (
       <div className="AuthorMeta">
-        <img src={author.avatar_url} />
+        <img src={author.avatar_url} alt="" />
         <a href={author.html_url} target="_blank">{author.login}</a>
         &nbsp;on {commit.author.date}
       </div>
@@ -70,7 +70,7 @@ class ViewRepository extends Component {
         
         <ul className="ViewRepository-commits">
           {this.state.commits.map(commit => (
-            <li className="ViewRepository-commit">
+            <li className="ViewRepository-commit" key={commit.sha}>
               <p className="ViewRepository-commit-message">
               <a href={commit.html_url} target="_blank">{commit.commit.message}</a>
               </p>
