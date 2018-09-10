@@ -21,7 +21,7 @@ class Table extends Component {
       return this.setState({ direction: 'ascending' });
     }
 
-    return this.setState({ sortBy: key, direction: 'ascending', sortType: type });
+    return this.setState({ sortBy: key, direction: 'descending', sortType: type });
   }
 
   getHeaderClasses = (key) => {
@@ -40,6 +40,7 @@ class Table extends Component {
 
   render() {
     let data = this.props.data;
+    console.log(data);
     const { sortBy, direction, sortType } = this.state;
 
     if (!this.props.data || this.props.data.length <= 0) {

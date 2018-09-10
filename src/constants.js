@@ -13,6 +13,11 @@ export const REPO_HEADERS = [
     type: 'number',
   },
   {
+    key: 'stargazers_count',
+    display: 'Stars',
+    type: 'number',
+  },
+  {
     key: 'open_issues',
     display: 'Open Issues',
     type: 'number',
