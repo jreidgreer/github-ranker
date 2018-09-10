@@ -35,6 +35,38 @@ export async function getRepos(org) {
 }
 
 /**
+ * Requests metadata for a given GitHub repository.
+ * @param {string} org GitHub organization the repo belongs to
+ * @param {string} repo GitHub organization to request commits from
+ * @see {@link https://developer.github.com/v3/repos/#get}
+ */
+export async function getRepoMeta(org, repo) {
+  const options = {
+    uri: `${GITHUB_API}/repos/${org}/${repo}`,
+    headers: {
+      'Accept': GITHUB_REQUEST_HEADER
+    }
+  };
+
+  let result = {};
+
+  try {
+    result = await rp(options);
+  } catch (e) {
+    console.error(e);
+    return result;
+  }
+
+  try {
+    result = JSON.parse(result);
+  } catch (e) {
+    console.error('Error parsing result from getRepos ', e);
+  }
+
+  return result;
+}
+
+/**
  * Requests a list of commits for a given GitHub repository.
  * @param {string} org GitHub organization the repo belongs to
  * @param {string} repo GitHub organization to request commits from

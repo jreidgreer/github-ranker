@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './ViewRepository.scss';
 
 import { getCommits } from '../../utils/repository.util';
+import RepoMeta from '../RepoMeta/RepoMeta';
 
 // Commit history can lack proper author metadata
 const AuthorMeta = ({ author, commit }) => {
@@ -15,6 +16,13 @@ const AuthorMeta = ({ author, commit }) => {
         &nbsp;on {commit.author.date}
       </div>
       );
+  } else if (commit.author) {
+    return (
+      <div className="AuthorMeta">
+        {commit.author.name}
+        &nbsp;on {commit.author.date}
+      </div>
+    );
   }
 
   return null;
@@ -26,6 +34,7 @@ class ViewRepository extends Component {
     
     this.state = {
       commits: [],
+      repoMeta: null
     };
   }
 
@@ -37,7 +46,6 @@ class ViewRepository extends Component {
   }
 
   render() {
-    console.log(this.state.commits);
     const { org, repo } = this.props.match.params;
 
     return (
@@ -47,11 +55,18 @@ class ViewRepository extends Component {
             {this.props.match.params.org} / {this.props.match.params.repo} - GitHub Repo Ranker
           </title>
         </Helmet>
-        <h1 className="ViewRepository-title">
-          <Link to={`/${org}`}>{org}</Link> / <span className="ViewRepository-title--current">{this.props.match.params.repo}</span>
-        </h1>
+        <div className="ViewRepository-meta-container">
+          <div className="ViewRepository-meta-left">
+            <h1 className="ViewRepository-title">
+              <Link to={`/${org}`}>{org}</Link> / <span className="ViewRepository-title--current">{this.props.match.params.repo}</span>
+            </h1>
+          </div>
+          <div className="ViewRepository-meta-right">
+            <RepoMeta org={org} repo={repo} />
+          </div>
+        </div>
 
-        <h2>Commits</h2>
+        <h2>Recent Commits</h2>
         
         <ul className="ViewRepository-commits">
           {this.state.commits.map(commit => (

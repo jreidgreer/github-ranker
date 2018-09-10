@@ -1,0 +1,14 @@
+.RepoMeta {
+  font-family: 'Lato', sans-serif;
+  .RepoMeta-item {
+    border: 1px solid #222;
+    border-radius: 3px;
+    margin-right: 10px;
+    padding: 5px;
+    font-weight: 300;
+
+    .RepoMeta-item-title {
+      font-weight: 400;
+    }
+  }
+}

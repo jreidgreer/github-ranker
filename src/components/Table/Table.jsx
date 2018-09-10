@@ -54,7 +54,7 @@ class Table extends Component {
       <table className="Table">
         <tbody>
           <tr>
-            <th></th>
+            <th className="Table--no-background"></th>
             {this.props.headers.map(header => (
             <th>
               <button

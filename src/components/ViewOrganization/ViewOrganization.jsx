@@ -46,7 +46,7 @@ class ViewRepository extends Component {
         <Helmet>
           <title>{org} - GitHub Repo Ranker</title>
         </Helmet>
-        <h1>{org}</h1>
+        <h1 className="ViewOrganization-title">{org}</h1>
         
         <Table data={this.state.repos} headers={REPO_HEADERS} org={org} />
       </div>
