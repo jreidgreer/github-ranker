@@ -17,3 +17,19 @@ To run the local development server:
 ```shell
 npm run start
 ```
+
+## Production Build
+
+To produce the assets ready for deployment, use:
+
+```shell
+npm run build
+```
+
+## Test
+
+To run unit tests included and run by Jest:
+
+```shell
+npm run test
+```
